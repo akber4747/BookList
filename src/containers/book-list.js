@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 class BookList extends Component {
 
     renderList(){
+        if (!this.props.books){
+            return <div> oops</div>
+        }
         return this.props.books.map((book) => {
             return (
                 <li key={book.tile} className="list-group-item"> {book.title} </li>
@@ -21,5 +24,9 @@ class BookList extends Component {
 
 function mapStateToProps(state){
     // whatever is returned here will be BookList component's props. Check the name bro..
-    
+    return {
+        books: state.books
+    };
 }
+
+export default connect(mapStateToProps)(BookList);
